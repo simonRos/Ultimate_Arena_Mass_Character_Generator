@@ -18,10 +18,11 @@ Use with arguments:
 See test.py if you are unfamiliar with Python syntax
 
 Argument details:
+
 	name:
 		Takes a string and uses it to name the character, character folder, and image
 		ex: Character(name="Simon").create_character_folder()
-	
+		
 	gender:
 		Ultimate Arena uses the following codes for gender:
 			male = 0.0
