@@ -2,11 +2,14 @@
 A tool for creating large numbers of Ultimate Arena Characters quickly and easily
 
 Basic use:
+
 	Character().create_character_folder()
+	
 This will generate a random character with a randomized name, gender, and color.
 Their stats will all be set to 1.0
 
 Use with arguments:
+
 	Character() can take the following arguments:
 	- name				str
 	- gender			float / int
