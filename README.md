@@ -83,26 +83,31 @@ Argument details:
 
 Examples:
 1) I want 1 character named Robot with a 10 in every stat
-Character(name="Robot", stat_info=10).create_character_folder()
+
+		Character(name="Robot", stat_info=10).create_character_folder()
 	
 2) I want 1 character named Unlucky Robot with a luck of 1 and 10 in every other stat
-Character(name="Unlucky Robot", stat_generation="list", stat_info=[1,10,10,10,10]).create_character_folder()
+
+		Character(name="Unlucky Robot", stat_generation="list", stat_info=[1,10,10,10,10]).create_character_folder()
 
 3) I want 100 characters with random names and stats but they must all have a gender of "other"
-for x in range(100):
-	Character(gender=2, stat_generation="random", batch=1).create_character_folder()
+	
+		for x in range(100):
+			Character(gender=2, stat_generation="random", batch=1).create_character_folder()
 	
 4) I want 549 characters all named Bob with low stats but occasionally I want a superior Bob
-for x in range(549):
-	bob_name = "Bob" + str(x)
-	Character(name=bob_name,
-              gender=0,
-              stat_generation="triangular",
-              stat_info=2,tags=["The Bobening", "episode 1"],
-              batch=808).create_character_folder()
+
+		for x in range(549):
+			bob_name = "Bob" + str(x)
+			Character(name=bob_name,
+			      gender=0,
+			      stat_generation="triangular",
+			      stat_info=2,tags=["The Bobening", "episode 1"],
+			      batch=808).create_character_folder()
 										
 5) I want 20 mostly random characters with stats built from a pool of 20 points
-for x in range(20):
-	Character(stat_generation="distributed",stat_info=20).create_character_folder()
+
+		for x in range(20):
+			Character(stat_generation="distributed",stat_info=20).create_character_folder()
 	
 Hit me up with questions, concerns, or bugs. I'll fix what I can.
