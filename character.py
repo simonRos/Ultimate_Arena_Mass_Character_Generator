@@ -53,13 +53,12 @@ class Character:
         self.colors = self.generate_colors
         #tags
         if tags != None:
-                tag_string = ','.join(tags)
-                char_file.write(f'tags="{tag_string}"\n')
+                self.tags = ','.join(tags)
         else:
             self.tags=None
         #batch
         if batch == None:
-            self.creator = random.randrange(0,1,0.000001)
+            self.creator = random.randrange(0,99999,1)
         else:
             self.creator = batch
 
@@ -194,7 +193,7 @@ class Character:
             char_file.write(f'creator="{self.creator}"\n')
             #tags
             if self.tags != None:
-                tag_string = ','.join(tags)
+                tag_string = self.tags
                 char_file.write(f'tags="{tag_string}"\n')
             #name
             char_file.write(f'name="{self.name}"\n')
