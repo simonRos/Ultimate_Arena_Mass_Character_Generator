@@ -50,7 +50,7 @@ class Character:
         #image
         self.image = f'{self.name}.png'
         #colors
-        self.colors = self.generate_colors
+        self.colors = self.generate_colors()
         #tags
         if tags != None:
                 self.tags = ','.join(tags)
@@ -149,9 +149,9 @@ class Character:
     def generate_colors(self):
         """Randomly generate hue, saturation, and color values"""
         colors = {
-            colorr : float(round(random.randint(0,255))),
-            colorg : float(round(random.randint(0,255))),
-            colorb : float(round(random.randint(0,255)))
+            'colorr' : float(round(random.randint(0,255))),
+            'colorg' : float(round(random.randint(0,255))),
+            'colorb' : float(round(random.randint(0,255)))
             }
         return colors
 
@@ -214,7 +214,7 @@ class Character:
                 stat_string = str(stat_val)#.ljust(8,"0")
                 char_file.write(f'{stat_name}="{stat_string}"\n')
             #colors
-            for color_name, color_val in self.stats.items():
+            for color_name, color_val in self.colors.items():
                 col_string = str(color_val)#.ljust(8,"0")
                 char_file.write(f'{color_name}="{col_string}"\n')
         #copy image
