@@ -220,7 +220,7 @@ class Character:
         #copy image
         image_file = os.path.join('characters',self.name, f'{self.name}.png')
         shutil.copy('default.png',image_file)
-        print(self.name)
+        #print(self.name)
         return True
 
 
