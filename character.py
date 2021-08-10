@@ -20,14 +20,6 @@ class Character:
         #stats - random
         if stat_generation == 'random':
             self.stats = self.generate_stats_with_random()
-        #stats - default
-        elif stat_generation == None or stat_generation == 'default':
-            if stat_info == None:
-                default_stat_value = 1
-                warnings.warn(f'Insufficient stats info. Using default of {default_stat_value}!')
-                self.stats = self.default_stats(default_stat_value)
-            else:
-                self.stats = self.default_stats(stat_info)
         #stats - distributed
         elif stat_generation == 'distributed':
             self.stats = self.generate_stats_with_distributed(stat_info)
@@ -37,6 +29,14 @@ class Character:
         #stats - list
         elif stat_generation == 'list':
             self.stats = self.generate_skills_from_list(stat_info)
+        #stats - default
+        else:
+            if stat_info == None:
+                default_stat_value = 1
+                warnings.warn(f'Insufficient stats info. Using default of {default_stat_value}!')
+                self.stats = self.default_stats(default_stat_value)
+            else:
+                self.stats = self.default_stats(stat_info)  
         #gender
         if gender == None:
             self.gender = self.generate_gender()
@@ -46,7 +46,7 @@ class Character:
         if name == None:
             self.name = self.generate_name()
         else:
-            self.name = name
+            self.name = str(name)
         #image
         self.image = f'{self.name}.png'
         #colors
@@ -58,7 +58,7 @@ class Character:
             self.tags=None
         #batch
         if batch == None:
-            self.creator = random.randrange(0,99999,1)
+            self.creator = 1234.5
         else:
             self.creator = batch
 
@@ -88,6 +88,9 @@ class Character:
 
     def generate_stats_with_distributed(self, points):
         """Generates stats by distributing points"""
+        if points == None:
+            warnings.warn(f'No point pool allocated!')
+            return dict.fromkeys(self.stats, 1)
         stat_max = 45
         if points > stat_max:
             warnings.warn(f'{points} is greater than maximum allowed {stat_max} points per character!')
@@ -105,13 +108,14 @@ class Character:
         return stats
 
     def default_stats(self, default_stat):
-        stats = {}
-        for k in self.stats.keys():
-            stats[k] = float(default_stat)
-        return stats
+        return dict.fromkeys(self.stats, float(default_stat))
 
 
     def generate_skills_from_list(self, skill_list):
+        if skill_list == None or len(skill_list) != 5:
+            default_skill_list = [1.0,1.0,1.0,1.0,1.0]
+            warnings.warn(f'{skill_list} is an invalid skill_list! Defaulting to {default_skill_list}')
+            skill_list = default_skill_list
         stats = {}
         index = 0
         for k in self.stats.keys():
@@ -130,7 +134,10 @@ class Character:
 
     def generate_stats_with_random_triangular(self, mode):
             """Generates stats randomly waited around the given mode"""
-            if mode > 10:
+            if mode == None:
+                warnings.warn(f'No mode defined! Defaulting to 5')
+                mode = 5
+            elif mode > 10:
                 warning.warn(f'mode entered for random triangular stat distrubution {mode} is higher than maximum of 10!')
                 mode = 10
             stats = {}
