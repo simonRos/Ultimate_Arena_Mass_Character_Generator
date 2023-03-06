@@ -13,7 +13,7 @@ Use with arguments:
 	Character() can take the following arguments:
 	- name				str
 	- gender			float / int
-	- stat_generation	str
+	- stat_generation		str
 	- stat_info			float / int / list[float] / list[int]
 	- tags				list[str]
 	- batch				float / int
